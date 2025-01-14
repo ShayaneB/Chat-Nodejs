@@ -25,16 +25,18 @@ app.get("/", function (req, res) {
 
 app.post("/", function (req, res) {
   const message = req.body.message;
-  if (message) {
-    res.render("index", { Message: req.body.message });
+  const user = req.body.name;
+
+  if (message && user) {
+    res.render("index", { Message: message, Username: user });
   } else {
     res.send("Message not send!");
   }
 });
 
 io.on("connection", (socket) => {
-  socket.on("chat message", (msg) => {
-    io.emit("chat message", msg);
+  socket.on("chat message", (msg, username) => {
+    io.emit("chat message", msg, username);
   });
 });
 
