@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat App</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      ul {
+        display: grid;
+      }
+
+      div.enteredMsg:nth-child(odd) {
+        background-color: rgb(4, 115, 189);
+        float: right;
+        text-align: end;
+        justify-self: end;
+      }
+
+      div.enteredMsg:nth-child(even) {
+        background-color: rgb(11, 121, 97);
+        float: left;
+      }
+
+      div.enteredMsg {
+        width: 30%;
+        border-radius: 2rem;
+      }
+
+      li {
+        padding: 0.8rem;
+        list-style: none;
+        color: aliceblue;
+      }
+
+      div.enteredMsg span:nth-child(odd) {
+        background-color: rgb(240, 112, 7);
+      }
+
+      div.enteredMsg span:nth-child(even) {
+        background-color: rgb(240, 7, 7);
+      }
+
+      span {
+        display: inline-block;
+        margin: -1rem;
+        border-radius: 50%;
+        width: 2%;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="m-3">
+      <div class="card card-default">
+        <div class="card-header">Chat App</div>
+        <div class="card-body">
+          <ul id="messages"></ul>
+
+          <form action="/" method="POST" id="form">
+            <div class="form-group">
+              <label for="message">Message</label>
+              <input
+                type="text"
+                name="message"
+                id="message"
+                class="form-control"
+                required
+                placeholder="Type Your Message"
+              />
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      const form = document.getElementById("form");
+      const input = document.getElementById("message");
+      const messages = document.getElementById("messages");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit("chat message", input.value);
+          input.value = "";
+        }
+      });
+      socket.on("chat message", (msg) => {
+        const item = document.createElement("li");
+        const avtar = document.createElement("span");
+        const div = document.createElement("div");
+        div.className = "enteredMsg";
+        item.textContent = msg;
+
+        messages.append(div);
+        div.append(avtar, item);
+        // item.before(avtar);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+  </body>
+</html>
