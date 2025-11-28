@@ -1,0 +1,18 @@
+@use './variables' as *;
+
+.app-root { max-width: 900px; margin: 2rem auto; padding: 1rem; }
+.app-header { display:flex; justify-content:space-between; align-items:center; gap:12px; font-size: 1.25rem; font-weight: 700; padding: 0.5rem 0; }
+.app-header .status { font-size: 0.9rem; color: #666; font-weight: 500 }
+.app-header .status .online-count { font-weight: 700; color: #222 }
+.app-header .status .online-list { color: #444 }
+
+.app-header .status .avatars { display:flex; gap:6px; margin-right:8px; align-items:center }
+.app-header .status .avatars .avatar.small { width:22px; height:22px; font-size:0.65rem; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#e8eef9; color:#0b2b45 }
+.join-box input { padding: 0.75rem; border-radius: $radius-sm; width: 100%; border: 1px solid #ddd; }
+.message-list { min-height: 40vh; border: 1px solid #eee; padding: 0.5rem; border-radius: $radius-md; margin-bottom: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.message-item { padding: 0.6rem; border-radius: $radius-md; background: $color-card; }
+.message-item.mine { align-self: flex-end; background: $color-accent; color: white; }
+.meta { display: flex; justify-content: space-between; font-size: 0.75rem; color: #666; margin-bottom: 0.25rem; }
+.chat-input { display: flex; gap: 0.5rem; }
+.chat-input input { flex: 1; padding: 0.6rem; border-radius: $radius-md; border: 1px solid #ddd; }
+.chat-input button { padding: 0.6rem 0.9rem; border-radius: $radius-md; background: $color-accent; color: white; border: 0; }

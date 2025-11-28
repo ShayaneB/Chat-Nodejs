@@ -1,0 +1,30 @@
+// Helpful mixins to keep styling consistent and readable
+@mixin center-flex($dir: row, $align: center, $justify: center) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin visually-hidden() {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Simple media helper for small screens
+@mixin respond-to($query) {
+  @if $query == 'sm' {
+    @media (max-width: 640px) { @content; }
+  } @else if $query == 'md' {
+    @media (max-width: 900px) { @content; }
+  } @else {
+    @content;
+  }
+}

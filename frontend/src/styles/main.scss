@@ -1,0 +1,8 @@
+// main.scss — entrypoint for all global styles
+@use './variables' as *;
+@use './mixins' as *;
+@use './base' as *;
+@use './app' as *;
+@use './chat' as *;
+
+/* Consumers can import ./styles/main.scss to get the whole stylesheet */
